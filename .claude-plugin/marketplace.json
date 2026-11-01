@@ -5,14 +5,14 @@
     "email": "admin@sdods.com"
   },
   "metadata": {
-    "description": "Official SDODS plugins for Claude Code."
+    "description": "Official SDODS plugins for Claude Code and GitHub Copilot CLI."
   },
   "plugins": [
     {
       "name": "sdods",
       "source": "./plugins/sdods",
-      "description": "SDODS for Claude Code: BDD test automation for UI, API and hybrid flows. Run, plan, generate, heal and review tests with the SDODS MCP server, skills and subagents.",
-      "version": "0.7.0",
+      "description": "SDODS for Claude Code and GitHub Copilot CLI: BDD test automation for UI, API and hybrid flows. Run, plan, generate, heal and review tests with the SDODS MCP server, skills and subagents.",
+      "version": "0.20.0",
       "category": "testing",
       "keywords": [
         "testing",

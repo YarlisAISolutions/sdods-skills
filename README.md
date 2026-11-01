@@ -1,11 +1,11 @@
-# SDODS skills and Claude Code plugin
+# SDODS skills and plugin for Claude Code and GitHub Copilot
 
 Skills, subagents and the MCP server that let AI coding agents write, run, heal and review
 [SDODS](https://sdods.com) tests — BDD automation for UI, API and hybrid flows.
 
 SDODS is free: Apache-2.0 on npm (`@sdods/cli`), unlimited API tokens, no paid tier.
 
-> Generated from the SDODS monorepo by `scripts/build-agent-plugin.ts` (version 0.7.0).
+> Generated from the SDODS monorepo by `scripts/build-agent-plugin.ts` (version 0.20.0).
 > Changes made directly in this repository are overwritten on the next release.
 
 ## Claude Code plugin
@@ -13,7 +13,7 @@ SDODS is free: Apache-2.0 on npm (`@sdods/cli`), unlimited API tokens, no paid t
 Skills, the five SDODS subagents, the MCP server, slash commands and a session hook, in one install:
 
 ```text
-/plugin marketplace add siri1410/sdods-skills
+/plugin marketplace add https://sdods.com/skills.git
 ```
 
 ```text
@@ -27,18 +27,34 @@ To offer it to everyone who opens a repository, commit this to `.claude/settings
 ```json
 {
   "extraKnownMarketplaces": {
-    "sdods": { "source": { "source": "github", "repo": "siri1410/sdods-skills" } }
+    "sdods": { "source": { "source": "git", "url": "https://sdods.com/skills.git" } }
   },
   "enabledPlugins": { "sdods@sdods": true }
 }
 ```
+
+## GitHub Copilot CLI plugin
+
+The same plugin installs in [Copilot CLI](https://github.com/github/copilot-cli): its skills, the
+five subagents (`copilot --agent sdods:sdods-healer`) and the MCP server.
+
+```bash
+copilot plugin marketplace add https://sdods.com/skills.git
+```
+
+```bash
+copilot plugin install sdods@sdods
+```
+
+The session hook is Claude Code only. To run SDODS agent roles on your Copilot subscription, use
+`sdods agent heal --adapter copilot` (or plan, generate, upgrade, review); for Copilot in VS Code, see the guide linked below.
 
 ## Any agent: skills with npx
 
 Works with Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI, OpenCode, Amp, Goose and more:
 
 ```bash
-npx skills add siri1410/sdods-skills
+npx skills add https://sdods.com/skills.git
 ```
 
 Or with the SDODS CLI, which needs no GitHub access:
@@ -58,6 +74,10 @@ npx -y @sdods/cli skills install
 
 ```bash
 claude mcp add sdods -- npx -y @sdods/cli mcp
+```
+
+```bash
+copilot mcp add sdods -- npx -y @sdods/cli mcp
 ```
 
 Every other client — Codex, Cursor, VS Code, Windsurf, Gemini CLI, Zed, JetBrains, Claude Desktop
